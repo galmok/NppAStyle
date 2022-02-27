@@ -24,10 +24,12 @@
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-#ifndef _PLUGINDEFINITION_H_
-#define _PLUGINDEFINITION_H_
+#ifndef PLUGINDEFINITION_H
+#define PLUGINDEFINITION_H
 
+//
 // All difinitions of plugin interface
+//
 #include "PluginInterface.h"
 
 //-------------------------------------//
@@ -43,21 +45,35 @@ const TCHAR NPP_PLUGIN_NAME[] = TEXT( "NppAStyle" );
 const int nbFunc = 5;
 
 
+//
 // Initialization of your plugin data
 // It will be called while plugin loading
-void pluginInit( HANDLE hModule );
+//
+void pluginInit(HANDLE hModule);
 
+//
 // Cleaning of your plugin
 // It will be called while plugin unloading
+//
 void pluginCleanUp();
 
+//
 //Initialization of your plugin commands
+//
 void commandMenuInit();
 
-// Function which sets your command
-bool setCommand( size_t index, TCHAR *cmdName, PFUNCPLUGINCMD pFunc, ShortcutKey *sk = NULL, bool check0nInit = false );
+//
+//Clean up your plugin commands allocation (if any)
+//
+//void commandMenuCleanUp();
+
+//
+// Function which sets your command 
+//
+bool setCommand(size_t index, TCHAR *cmdName, PFUNCPLUGINCMD pFunc, ShortcutKey *sk = NULL, bool check0nInit = false);
 
 
+//
 // Your plugin command functions
 
 // define pointers to callback proc formatter code
@@ -67,4 +83,4 @@ struct NppAStyleOption;
 
 void AStyleCode( const char *textBuffer, const NppAStyleOption &m_astyleOption, fpRunProc fpRunProcHandler, HWND hwin );
 
-#endif // _PLUGINDEFINITION_H_
+#endif // PLUGINDEFINITION_H_

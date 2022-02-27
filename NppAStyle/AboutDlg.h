@@ -10,7 +10,7 @@
 #ifndef _ABOUT_DLG_H_
 #define _ABOUT_DLG_H_
 
-#include "StaticDialog.h"
+#include "DockingFeature/StaticDialog.h"
 #include "PluginInterface.h"
 
 

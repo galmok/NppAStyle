@@ -10,7 +10,7 @@
 #ifndef _NPP_ASTYLE_OPTION_DLG_H_
 #define _NPP_ASTYLE_OPTION_DLG_H_
 
-#include "StaticDialog.h"
+#include "DockingFeature/StaticDialog.h"
 #include "PluginInterface.h"
 
 struct NppAStyleOption;
