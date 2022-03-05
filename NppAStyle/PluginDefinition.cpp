@@ -209,7 +209,7 @@ void AStyleCode( const char *textBuffer, const NppAStyleOption &m_astyleOption, 
 		HWND curScintilla = getNppCurrentScintilla();
 
 		isUseSpace = 0 == ::SendMessage( curScintilla, SCI_GETUSETABS, 0, 0 );
-		iTabSize = ::SendMessage( curScintilla, SCI_GETTABWIDTH, 0, 0 );
+		iTabSize = ( int )::SendMessage( curScintilla, SCI_GETTABWIDTH, 0, 0 );
 
 		if( isUseSpace == false )
 		{
@@ -284,13 +284,13 @@ void formatCode()
 		return;
 	}
 
-	int textSize = ( int )::SendMessage( curScintilla, SCI_GETLENGTH, 0, 0 );
+	Sci_Position textSize = ( Sci_Position )::SendMessage( curScintilla, SCI_GETLENGTH, 0, 0 );
 	textSize += 1;
 	char *textBuffer = ( char * )::malloc( textSize );
 	::SendMessage( curScintilla, SCI_GETTEXT, ( WPARAM )textSize, ( LPARAM )textBuffer );
 
-	const unsigned int pos_cur = ::SendMessage( curScintilla, SCI_GETCURRENTPOS, 0, 0 );
-	const unsigned int lineNumber_cur = ::SendMessage( curScintilla, SCI_LINEFROMPOSITION, pos_cur, 0 );
+	const Sci_Position pos_cur = ::SendMessage( curScintilla, SCI_GETCURRENTPOS, 0, 0 );
+	const Sci_Position lineNumber_cur = ::SendMessage( curScintilla, SCI_LINEFROMPOSITION, pos_cur, 0 );
 
 	AStyleCode( textBuffer, astyleOption, formatRunProcCallback, curScintilla );
 

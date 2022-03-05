@@ -139,7 +139,7 @@ void NppAStyleOptionDlg::updateDlgTabsetting()
 	if( m_astyleOption->isSameAsNppCurView )
 	{
 		HWND hWndNppCurrentScintilla = getNppCurrentScintilla();
-		m_astyleOption->iTabSize = ::SendMessage( hWndNppCurrentScintilla, SCI_GETTABWIDTH, 0, 0 );
+		m_astyleOption->iTabSize = ( int )::SendMessage( hWndNppCurrentScintilla, SCI_GETTABWIDTH, 0, 0 );
 		m_astyleOption->isUseSpace = 0 == ::SendMessage( hWndNppCurrentScintilla, SCI_GETUSETABS, 0, 0 );
 	}
 	SendDlgItemMessage( IDC_TXT_PREVIEW, SCI_SETTABWIDTH, (WPARAM) m_astyleOption->iTabSize, 0 );
@@ -168,7 +168,7 @@ void NppAStyleOptionDlg::updateDlgPreviewText()
 	}
 	else
 	{
-		unsigned int pos = ::SendMessage( hWndPreviewCtrl, SCI_GETCURRENTPOS, 0, 0 );
+		Sci_Position pos = ::SendMessage( hWndPreviewCtrl, SCI_GETCURRENTPOS, 0, 0 );
 		::SendMessage( hWndPreviewCtrl, SCI_SETWRAPMODE, SC_WRAP_NONE, 0 );
 		LPARAM lw = ::SendMessage( hWndPreviewCtrl, SCI_TEXTWIDTH, STYLE_LINENUMBER, (LPARAM) "_999" );
 		::SendMessage( hWndPreviewCtrl, SCI_SETMARGINWIDTHN, 0, lw );
@@ -806,7 +806,7 @@ INT_PTR CALLBACK NppAStyleOptionDlg::DlgOptionProc( UINT Message, WPARAM wParam,
 
 				if( HIWORD( wParam ) == CBN_SELCHANGE )
 				{
-					int ItemIndex = ::SendMessage( ( HWND ) lParam, ( UINT ) CB_GETCURSEL, 0, 0 );
+					int ItemIndex = ( int )::SendMessage( ( HWND ) lParam, ( UINT ) CB_GETCURSEL, 0, 0 );
 					switch( LOWORD( wParam ) )
 					{
 						case IDC_CBB_TABSIZE:
